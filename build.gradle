@@ -1,0 +1,65 @@
+plugins {
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'org.spongepowered.mixin' version '0.7.+'
+}
+
+version = '5.0.4'
+group = 'net.kendo.nightfall'
+archivesBaseName = 'nightfall-skin'
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                nightfall_skin { source sourceSets.main }
+            }
+        }
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                nightfall_skin { source sourceSets.main }
+            }
+        }
+    }
+}
+
+mixin {
+    add sourceSets.main, 'nightfall_skin.mixins.refmap.json'
+    config 'nightfall_skin.mixins.json'
+}
+
+repositories {
+    maven { url = 'https://maven.minecraftforge.net' }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.4.10'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    // tinyfd is bundled with LWJGL3 which Minecraft already ships — no extra dep needed
+}
+
+jar {
+    manifest {
+        attributes([
+            'Specification-Title'     : 'nightfall-skin',
+            'Specification-Vendor'    : 'kendo',
+            'Specification-Version'   : '1',
+            'Implementation-Title'    : project.name,
+            'Implementation-Version'  : project.jar.archiveVersion,
+            'Implementation-Vendor'   : 'kendo',
+            'MixinConfigs'            : 'nightfall_skin.mixins.json'
+        ])
+    }
+}
+
+jar.finalizedBy('reobfJar')

@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="CC0-1.0"
+issueTrackerURL=""
+
+[[mods]]
+modId="nightfall_skin"
+version="5.0.4"
+displayName="Nightfall Skin Changer"
+description='''
+Skin Changer mod - Change your skin in-game!
+Press I to open the skin changer GUI.
+Supports multiplayer skin syncing.
+'''
+displayURL=""
+
+[[dependencies.nightfall_skin]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47.4,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.nightfall_skin]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.21)"
+    ordering="NONE"
+    side="BOTH"

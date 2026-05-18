@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.kendo.nightfall.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "nightfall_skin.mixins.refmap.json",
+  "mixins": [],
+  "client": [
+    "PlayerEntityRendererMixin",
+    "PlayerListEntryMixin",
+    "ScreenDragDropMixin"
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
